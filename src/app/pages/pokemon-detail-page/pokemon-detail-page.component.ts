@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'pokemon-detail-page',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
 })
 
 export class PokemonDetailPage {
+    id: string
+    constructor(private readonly route:ActivatedRoute){}
 
+    ngOnInit():void {
+        this.id = this.route.snapshot.paramMap.get('id');
+    }
 }

@@ -1,1 +1,4 @@
 <h1>Trainer page</h1>
+<pokemon *ngFor="let pokemon of collectedPokemons" [pokemon]="pokemon" 
+    (showPokemonDetails)="showPokemonDetails($event)">
+</pokemon>

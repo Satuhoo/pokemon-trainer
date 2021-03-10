@@ -13,10 +13,10 @@ const routes :Routes = [{
     pathMatch: 'full',
     component: TrainerPage
 },{
-    path: 'catalogue',
+    path: 'pokemons',
     component: PokemonCataloguePage
 },{
-    path: 'pokemon/:name',
+    path: 'pokemons/:id',
     component: PokemonDetailPage
 }]
 
