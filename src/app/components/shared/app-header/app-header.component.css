@@ -1,0 +1,7 @@
+h1 {
+    background-color: lightgray;
+    color: orange;
+    text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
+    padding: 20px;
+    border-bottom: 1px solid black;
+}
