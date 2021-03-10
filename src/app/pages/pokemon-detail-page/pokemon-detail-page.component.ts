@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PokemonModel } from '../../models/pokemon.model';
+import { PokemonService } from '../../services/pokemon-service';
 
 @Component({
     selector: 'pokemon-detail-page',
@@ -8,10 +10,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class PokemonDetailPage {
-    id: string
-    constructor(private readonly route:ActivatedRoute){}
+    id: number
+    pokemon: PokemonModel;
+
+    constructor(private readonly route:ActivatedRoute, private pokemonService: PokemonService){}
 
     ngOnInit():void {
-        this.id = this.route.snapshot.paramMap.get('id');
+        this.id = parseInt(this.route.snapshot.paramMap.get('id'));
+        this.pokemon = this.pokemonService.getPokemonById(this.id);
     }
 }

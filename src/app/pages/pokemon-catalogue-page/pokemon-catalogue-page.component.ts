@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { PokemonService } from '../../services/pokemon-service'; 
+import { PokemonModel } from '../../models/pokemon.model';
 
 @Component({
     selector: 'pokemon-catalogue-page',
@@ -8,15 +10,14 @@ import { Router } from '@angular/router';
 })
 
 export class PokemonCataloguePage {
-    constructor(private readonly router:Router){}
+    pokemons: PokemonModel[];
 
-    public pokemons = [{
-        Id: 1,
-        Name: "Charmander"
-    },{
-        Id: 2,
-        Name: "Bulbasaur" 
-    }];
+    constructor(private readonly router:Router, private pokemonService: PokemonService){}
+
+    ngOnInit(): void {
+        this.pokemons = this.pokemonService.getPokemons();
+        console.log(this.pokemons)
+    }
 
     showPokemonDetails(pokemonId) {
         this.router.navigateByUrl(`pokemons/${pokemonId}`)
