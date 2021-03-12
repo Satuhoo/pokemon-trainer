@@ -4,6 +4,7 @@ import { TrainerPage } from './pages/trainer-page/trainer-page.component';
 import { LoginPage } from './pages/login-page/login-page.component';
 import { PokemonCataloguePage } from './pages/pokemon-catalogue-page/pokemon-catalogue-page.component';
 import { PokemonDetailPage } from './pages/pokemon-detail-page/pokemon-detail-page.component';
+import { SessionGuard } from './guards/session.guard';
 
 const routes :Routes = [{
     path: 'login',
@@ -11,13 +12,16 @@ const routes :Routes = [{
 },{
     path: '',
     pathMatch: 'full',
-    component: TrainerPage
+    component: TrainerPage,
+    canActivate: [SessionGuard]
 },{
     path: 'pokemons',
-    component: PokemonCataloguePage
+    component: PokemonCataloguePage,
+    canActivate: [SessionGuard]
 },{
     path: 'pokemons/:id',
-    component: PokemonDetailPage
+    component: PokemonDetailPage,
+    canActivate: [SessionGuard]
 }]
 
 @NgModule({
