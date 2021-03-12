@@ -1,1 +1,8 @@
-<h1>Pokemon trainer</h1>
+<div class="flex-container">
+    <h1 class="title">Pokemon trainer</h1>
+    <ul *ngIf="active">
+        <li><a routerLink="/pokemons">Pokemons</a></li>
+        <li><a routerLink="/trainer">Trainer</a></li>
+        <li><button (click)="loginService.logOut()">Log out</button></li>
+  </ul>
+</div>

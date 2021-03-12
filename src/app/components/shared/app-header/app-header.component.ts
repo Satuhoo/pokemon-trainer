@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { SessionService } from 'src/app/services/session.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
     selector: 'app-header',
@@ -7,5 +10,11 @@ import { Component } from '@angular/core';
 })
 
 export class AppHeaderComponent{
-    title = "header"
+    constructor(
+        private readonly sessionService: SessionService,
+        private readonly loginService: LoginService){}
+
+    get active(): boolean {
+        return this.sessionService.active();
+    }
 }
