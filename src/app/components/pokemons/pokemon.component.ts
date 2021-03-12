@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { PokemonModel } from 'src/app/models/pokemon.model';
 
 @Component({
     selector: 'pokemon',
@@ -8,11 +7,11 @@ import { PokemonModel } from 'src/app/models/pokemon.model';
 })
 
 export class Pokemon {
-    @Input() pokemon: PokemonModel;
+    @Input() pokemon: any;
 
     @Output() showPokemonDetails: EventEmitter<any> = new EventEmitter();
 
     sendPokemonDetail() {
-        this.showPokemonDetails.emit(this.pokemon['id'])
+        this.showPokemonDetails.emit(this.pokemon.data.id)
     }
 }

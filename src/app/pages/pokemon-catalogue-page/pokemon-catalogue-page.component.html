@@ -1,4 +1,6 @@
 <h1>catalogue</h1>
-<pokemon *ngFor="let pokemon of pokemons" [pokemon]="pokemon" 
-    (showPokemonDetails)="showPokemonDetails($event)">
-</pokemon>
+<div class="flex-container">
+    <pokemon *ngFor="let pokemon of pokemons" [pokemon]="pokemon" 
+        (showPokemonDetails)="showPokemonDetails($event)">
+    </pokemon>
+</div>

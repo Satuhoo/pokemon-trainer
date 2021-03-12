@@ -1,1 +1,5 @@
-<h2 (click)="sendPokemonDetail()">{{pokemon.name}}</h2>
+<div class="pokemon-card" (click)="sendPokemonDetail()">
+    <h2>{{pokemon.name}}</h2>
+    <img src={{pokemon.data.imageUrl}}/>
+</div>
+

@@ -10,13 +10,16 @@ import { PokemonModel } from '../../models/pokemon.model';
 })
 
 export class PokemonCataloguePage {
-    pokemons: PokemonModel[];
+    //pokemons: PokemonModel[] = [];
 
     constructor(private readonly router:Router, private pokemonService: PokemonService){}
 
     ngOnInit(): void {
-        this.pokemons = this.pokemonService.getPokemons();
-        console.log(this.pokemons)
+        this.pokemonService.getPokemons();
+    }
+
+    get pokemons() {
+        return this.pokemonService.pokemons;
     }
 
     showPokemonDetails(pokemonId) {

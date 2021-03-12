@@ -1,19 +1,27 @@
 <h1>{{pokemon.name}}</h1>
-<p>{{id}}</p>
 <button>Collect</button>
 <div class="flex-container">
     <div>
-        <p>image</p>
-        <p>Type</p>
-        <p>Base stats</p>
+        <img src={{pokemon.imageUrl}}/>
+        <p>Type: {{pokemon.type}}</p>
+        <p>Base stats:</p>
+        <p *ngFor="let stat of pokemon.baseStats">
+            {{stat.stat.name}}: {{stat.base_stat}}
+        </p>
     </div>
     <div>
-        <p>Height</p>
-        <p>Weigth</p>
-        <p>Abilities</p>
-        <p>Base experience</p>
+        <p>Height: {{pokemon.height}}</p>
+        <p>Weight: {{pokemon.weight}}</p>
+        <p>Abilities: </p>
+        <p *ngFor="let ability of pokemon.abilities">
+            {{ability.ability.name}}
+        </p>
+        <p>Base experience: {{pokemon.baseExperience}}</p>
     </div>
     <div>
-        <p>List of moves</p>
+        <p>List of moves:</p>
+        <p *ngFor="let move of pokemon.moves">
+            {{move.move.name}}
+        </p>
     </div>
 </div>

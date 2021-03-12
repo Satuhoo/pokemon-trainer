@@ -1,4 +1,12 @@
 export interface PokemonModel {
-    id: number;
+    id: number,
     name: string;
+    imageUrl: string;
+    type: string;
+    baseStats: [];
+    height: number;
+    weight: number;
+    abilities: [];
+    baseExperience: number;
+    moves: [];
 }
