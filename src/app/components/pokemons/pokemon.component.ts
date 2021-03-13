@@ -12,6 +12,6 @@ export class Pokemon {
     @Output() showPokemonDetails: EventEmitter<any> = new EventEmitter();
 
     sendPokemonDetail() {
-        this.showPokemonDetails.emit(this.pokemon.data.id)
+        this.showPokemonDetails.emit(this.pokemon.id)
     }
 }

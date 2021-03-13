@@ -24,7 +24,9 @@ export class PokemonService {
             .subscribe(
                 (pokemons: any) => {
                     for (let index in pokemons) {
-                        pokemons[index].data = this.getIdAndImage(pokemons[index])
+                        pokemons[index].id = this.getId(pokemons[index].url)
+                        pokemons[index].imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemons[index].id}.svg`
+                        console.log(pokemons[index])
                     }
                     this.pokemons = pokemons;
                 },
@@ -34,14 +36,8 @@ export class PokemonService {
             )
     }
 
-    getIdAndImage(pokemon): any {
-        let pokemonData: any = {};
-        this.http.get(pokemon.url)
-        .subscribe((data: any) => {
-            pokemonData.id = data.id
-            pokemonData.imageUrl = data.sprites.other.dream_world.front_default
-        })
-        return pokemonData;
+    getId(url: string): number {
+        return parseInt(url.split('/').filter(Boolean).pop());
     }
 
     getPokemonById(id: number): any {

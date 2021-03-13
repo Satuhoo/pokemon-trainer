@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
     selector: 'login-form',
@@ -12,10 +12,9 @@ export class LoginForm {
     
     constructor(
         private readonly router: Router,
-        private readonly loginService: LoginService){}
+        private readonly storageService: StorageService){}
     
     onFormSubmit(form) {
-        console.log( form.value );
-        this.loginService.logIn(form.value.userName)
+        this.storageService.logIn(form.value.userName)
       }
 }

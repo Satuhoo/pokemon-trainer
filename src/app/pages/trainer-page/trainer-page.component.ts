@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
     selector: 'trainer-page',
@@ -8,17 +9,16 @@ import { Router } from '@angular/router';
 })
 
 export class TrainerPage {
-    constructor(private readonly router:Router){
+    catchedPokemons: any[] = [];
 
+    constructor(private readonly router:Router,
+        private readonly storageService: StorageService){
     }
 
-    public collectedPokemons = [{
-        Id: 1,
-        Name: "Charmander"
-    },{
-        Id: 2,
-        Name: "Bulbasaur" 
-    }];
+    ngOnInit(): void {
+        this.storageService.getCatchedPokemons();
+        this.catchedPokemons = this.storageService.getCatchedPokemons();
+    }
 
     showPokemonDetails(pokemonId) {
         this.router.navigateByUrl(`pokemons/${pokemonId}`)

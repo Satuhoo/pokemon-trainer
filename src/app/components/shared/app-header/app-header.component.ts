@@ -1,7 +1,6 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { SessionService } from 'src/app/services/session.service';
-import { LoginService } from 'src/app/services/login.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
     selector: 'app-header',
@@ -12,7 +11,7 @@ import { LoginService } from 'src/app/services/login.service';
 export class AppHeaderComponent{
     constructor(
         private readonly sessionService: SessionService,
-        private readonly loginService: LoginService){}
+        private readonly storageService: StorageService){}
 
     get active(): boolean {
         return this.sessionService.active();

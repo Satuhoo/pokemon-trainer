@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokemonModel } from '../../models/pokemon.model';
-import { PokemonService } from '../../services/pokemon-service';
+import { PokemonService } from 'src/app/services/pokemon-service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
     selector: 'pokemon-detail-page',
@@ -12,11 +13,21 @@ import { PokemonService } from '../../services/pokemon-service';
 export class PokemonDetailPage {
     id: number
     pokemon: PokemonModel;
+    catched: boolean;
 
-    constructor(private readonly route:ActivatedRoute, private pokemonService: PokemonService){}
+    constructor(
+        private readonly route:ActivatedRoute, 
+        private readonly pokemonService: PokemonService,
+        private readonly storageService: StorageService){}
 
     ngOnInit():void {
         this.id = parseInt(this.route.snapshot.paramMap.get('id'));
         this.pokemon = this.pokemonService.getPokemonById(this.id);
+        this.catched = this.storageService.catched(this.id);
+    }
+
+    collect(): void {
+        this.storageService.addCatchedPokemon(this.pokemon);
+        this.catched = !this.catched
     }
 }

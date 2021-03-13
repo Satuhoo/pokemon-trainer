@@ -1,5 +1,6 @@
 <h1>{{pokemon.name}}</h1>
-<button>Collect</button>
+<button (click)="collect()" *ngIf="!catched">Collect</button>
+<p *ngIf="catched">Catched!</p>
 <div class="flex-container">
     <div>
         <img src={{pokemon.imageUrl}}/>
