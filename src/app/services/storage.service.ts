@@ -38,8 +38,12 @@ export class StorageService {
 
     catched(id: number): boolean {
         const storedPokemons: any[] = this.getCatchedPokemons();
-        return storedPokemons.some(function(pokemon) {
-            return pokemon.id === id;
-        });
+        if (storedPokemons !== null) {
+            return storedPokemons.some(function(pokemon) {
+                return pokemon.id === id;
+            })
+        } else {
+            return false;
+        }
     }
 }
