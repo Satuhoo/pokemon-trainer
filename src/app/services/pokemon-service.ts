@@ -10,9 +10,9 @@ export class PokemonService {
     private readonly pokemonCache$;
     private _pokemons: any[] = [];
     public error: string = '';
-    fetchLimit: number = 150;
-    private _offset: number = 0;
-    limit: number = 12;
+    fetchLimit: number = 150; //Defines how many pokemons is fetched from api
+    private _offset: number = 0; //Defines which is index of the first pokemon in the sliced list
+    limit: number = 12; //Defines number of shown pokemons in catalogue
 
     constructor(private readonly http: HttpClient){
         this.pokemonCache$ = this.http.get(`https://pokeapi.co/api/v2/pokemon?limit=${this.fetchLimit}&${this.offset}`)
@@ -20,6 +20,7 @@ export class PokemonService {
     }
 
     get pokemons(): any[] {
+        //Slices part of the list of fetched pokemons
         return this._pokemons.slice(
             this._offset,
             this._offset + this.limit
@@ -29,7 +30,7 @@ export class PokemonService {
     get offset(): number {
         return this._offset;
     }
-
+ 
     public next(): void {
         this._offset += this.limit;
     }
@@ -38,6 +39,7 @@ export class PokemonService {
         this._offset -= this.limit;
     }
 
+    //Fetches pokemons from api
     fetchPokemons(): void {
         this.pokemonCache$
             .pipe(
@@ -46,9 +48,10 @@ export class PokemonService {
             .subscribe(
                 (pokemons: any) => {
                     for (let index in pokemons) {
+                        //Sets returned id for pokemon
                         pokemons[index].id = this.getId(pokemons[index].url)
+                        //Sets image url for the pokemon
                         pokemons[index].imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemons[index].id}.svg`
-                        console.log(pokemons[index])
                     }
                     this._pokemons = pokemons;
                 },
@@ -58,10 +61,12 @@ export class PokemonService {
             )
     }
 
+    //Picks the id from pokemon's url
     getId(url: string): number {
         return parseInt(url.split('/').filter(Boolean).pop());
     }
 
+    //Fetches the pokemon's data from api by id and returns pokemon object
     getPokemonById(id: number): any {
         let poke: any = {};
         this.http.get(`https://pokeapi.co/api/v2/pokemon/${id}`)

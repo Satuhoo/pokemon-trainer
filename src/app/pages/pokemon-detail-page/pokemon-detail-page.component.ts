@@ -13,7 +13,7 @@ import { StorageService } from 'src/app/services/storage.service';
 export class PokemonDetailPage {
     id: number
     pokemon: PokemonModel;
-    catched: boolean;
+    catched: boolean; //Defines if the collect button is shown
 
     constructor(
         private readonly route:ActivatedRoute, 
@@ -26,6 +26,7 @@ export class PokemonDetailPage {
         this.catched = this.storageService.catched(this.id);
     }
 
+    //Calls method which saves catched pokemon to storage when catch button is clicked
     collect(): void {
         this.storageService.addCatchedPokemon(this.pokemon);
         this.catched = !this.catched

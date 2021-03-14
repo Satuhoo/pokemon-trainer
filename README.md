@@ -1,4 +1,8 @@
-# PokemonTrainer
+# Pokemon trainer
+
+The application provides the catalogue of pokemons and chance to collect them. Collected pokemons are shown in Trainer page. Requires the username to use the application. 
+
+Used Pokemon API for this project (https://pokeapi.co/).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
 

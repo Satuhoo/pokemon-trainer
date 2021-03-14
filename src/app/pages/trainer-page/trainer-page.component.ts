@@ -20,6 +20,7 @@ export class TrainerPage {
         this.catchedPokemons = this.storageService.getCatchedPokemons();
     }
 
+    //Waits the pokemonId from Child component and navigates to pokemon detail page when a pokemon is clicked
     showPokemonDetails(pokemonId) {
         this.router.navigateByUrl(`pokemons/${pokemonId}`)
     }

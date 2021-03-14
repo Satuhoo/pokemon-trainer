@@ -16,6 +16,7 @@ export class PokemonCataloguePage {
 
     ngOnInit(): void {
         this.pokemonService.fetchPokemons();
+        //Checks value of offset and changes values of shown buttons if it's the first or the last page
         if (this.offset == 0) {
             this.showPreviousButton = false;
         } 
@@ -32,10 +33,12 @@ export class PokemonCataloguePage {
         return this.pokemonService.offset;
     }
 
+    //Waits the pokemonId from Child component and navigates to pokemon detail page when a pokemon is clicked
     showPokemonDetails(pokemonId) {
         this.router.navigateByUrl(`pokemons/${pokemonId}`)
     }
 
+    //Handles the changes of shown button values and calls 'prev' method in services
     previousPokemons(): void {
         this.pokemonService.prev();
         this.showNextButton = true;
@@ -44,6 +47,7 @@ export class PokemonCataloguePage {
         }
     }
 
+    //Handles the changes of shown button values and calls 'next' method in services
     nextPokemons(): void {
         this.pokemonService.next();
         this.showPreviousButton = true;

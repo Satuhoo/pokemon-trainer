@@ -11,6 +11,7 @@ export class Pokemon {
 
     @Output() showPokemonDetails: EventEmitter<any> = new EventEmitter();
 
+    //Sends id of clicked pokemon for parent component
     sendPokemonDetail() {
         this.showPokemonDetails.emit(this.pokemon.id)
     }
