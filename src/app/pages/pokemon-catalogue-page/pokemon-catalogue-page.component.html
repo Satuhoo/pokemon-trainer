@@ -4,3 +4,9 @@
         (showPokemonDetails)="showPokemonDetails($event)">
     </pokemon>
 </div>
+<div class="btn-container">
+    <button (click)="previousPokemons()" *ngIf="showPreviousButton">Previous</button>
+    <button *ngIf="!showPreviousButton" disabled="disabled">Previous</button>
+    <button (click)="nextPokemons()" *ngIf="showNextButton">Next</button>
+    <button *ngIf="!showNextButton" disabled="disabled">Next</button>
+</div>

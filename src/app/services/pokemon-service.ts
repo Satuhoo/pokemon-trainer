@@ -8,15 +8,37 @@ import { map, shareReplay } from 'rxjs/operators';
 
 export class PokemonService {
     private readonly pokemonCache$;
-    public pokemons: any[] = [];
+    private _pokemons: any[] = [];
     public error: string = '';
+    fetchLimit: number = 150;
+    private _offset: number = 0;
+    limit: number = 12;
 
     constructor(private readonly http: HttpClient){
-        this.pokemonCache$ = this.http.get('https://pokeapi.co/api/v2/pokemon?limit=100')
+        this.pokemonCache$ = this.http.get(`https://pokeapi.co/api/v2/pokemon?limit=${this.fetchLimit}&${this.offset}`)
         .pipe(shareReplay(1))
     }
 
-    getPokemons(): void {
+    get pokemons(): any[] {
+        return this._pokemons.slice(
+            this._offset,
+            this._offset + this.limit
+        );
+    }
+
+    get offset(): number {
+        return this._offset;
+    }
+
+    public next(): void {
+        this._offset += this.limit;
+    }
+
+    public prev(): void {
+        this._offset -= this.limit;
+    }
+
+    fetchPokemons(): void {
         this.pokemonCache$
             .pipe(
                 map((response: any) => response.results)
@@ -28,7 +50,7 @@ export class PokemonService {
                         pokemons[index].imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemons[index].id}.svg`
                         console.log(pokemons[index])
                     }
-                    this.pokemons = pokemons;
+                    this._pokemons = pokemons;
                 },
                 error => {
                     this.error = error.message;
