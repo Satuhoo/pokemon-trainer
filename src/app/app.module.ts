@@ -12,6 +12,7 @@ import { PokemonCataloguePage } from './pages/pokemon-catalogue-page/pokemon-cat
 import { PokemonDetailPage } from './pages/pokemon-detail-page/pokemon-detail-page.component';
 import { TrainerPage } from './pages/trainer-page/trainer-page.component';
 import { Pokemon } from './components/pokemons/pokemon.component';
+import { NotFoundPage } from './pages/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { Pokemon } from './components/pokemons/pokemon.component';
     PokemonCataloguePage,
     PokemonDetailPage,
     TrainerPage,
-    Pokemon
+    Pokemon,
+    NotFoundPage
   ],
   imports: [
     BrowserModule,
