@@ -39,6 +39,10 @@ export class PokemonService {
         this._offset -= this.limit;
     }
 
+    public resetOffset(): void {
+        this._offset = 0;
+    }
+
     //Fetches pokemons from api
     fetchPokemons(): void {
         this.pokemonCache$

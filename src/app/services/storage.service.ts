@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { PokemonService } from './pokemon-service';
 
 @Injectable({
     providedIn: 'root'
@@ -7,7 +8,8 @@ import { Router } from '@angular/router';
 
 export class StorageService {
 
-    constructor(private readonly router: Router){}
+    constructor(private readonly router: Router,
+        private readonly pokemonService: PokemonService){}
 
     //Checks if the typed username is valid and saves it to local storage
     logIn(userName) {
@@ -20,6 +22,7 @@ export class StorageService {
     //Logs user out and clears all data from local storage
     logOut() {
         localStorage.clear();
+        this.pokemonService.resetOffset();
         this.router.navigateByUrl('/login'); //Navigates to login page
     }
 
