@@ -1,10 +1,28 @@
 # Pokemon trainer
 
-The application provides the catalogue of pokemons and chance to collect them. Collected pokemons are shown in Trainer page. Requires the username to use the application. 
-
-Used Pokemon API for this project (https://pokeapi.co/).
+The application provides the catalogue of pokemons and chance to collect them. Used Pokemon API for this project (https://pokeapi.co/).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
+
+## Pages
+
+The application uses local storage to save username and catched pokemons. It redirects user to login page if there is not saved username in the storage. Log out button clears all information from the storage and also redirects back to the login page.
+
+### Login Page
+
+The login page is shown for all the users who are not logged in. The application requires the valid username to navigate to the other pages. In this case valid username means something else than empty value. After logging in the application navigates to the catalogue and shows the log out button in the header.
+
+### Pokemon catalogue
+
+Pokemon catalogue is the collection of pokemon cards. Collection is paginated and it shows 12 pokemon cards on the each pages. User can open pokemon detail page by clicking any pokemon card.
+
+### Trainer page
+
+Collected pokemon cards are saved in the local storage and they are shown in the Trainer page. User can see pokemon details by clicking any pokemon card in the list.
+
+### Pokemon details
+
+The pokemon details page contains pokemon image, name and lot of another data of the each pokemon. Data is fetched from the pokemon API. Page contains also the 'catch' button, which provides an opportunity to user to collect the pokemon card. If pokemon card is already collected, the page shows text 'catched' instead of the button.
 
 ## Development server
 
